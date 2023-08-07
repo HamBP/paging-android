@@ -1,4 +1,4 @@
-package com.linkedlist.pagingstudy
+package com.linkedlist.pagingstudy.data
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

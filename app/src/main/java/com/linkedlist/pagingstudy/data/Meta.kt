@@ -1,4 +1,4 @@
-package com.linkedlist.pagingstudy
+package com.linkedlist.pagingstudy.data
 
 data class Meta(
     val total_count: Int,

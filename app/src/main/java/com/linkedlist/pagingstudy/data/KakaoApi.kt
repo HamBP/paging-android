@@ -1,12 +1,13 @@
-package com.linkedlist.pagingstudy
+package com.linkedlist.pagingstudy.data
 
+import com.linkedlist.pagingstudy.BuildConfig
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface KakaoApi {
     @GET("v2/search/web")
-    suspend fun request(
+    suspend fun getDocuments(
         @Header("Authorization")key: String = BuildConfig.API_KEY,
         @Query("query")query: String = "카카오",
         @Query("sort")sort: String = "accuracy",

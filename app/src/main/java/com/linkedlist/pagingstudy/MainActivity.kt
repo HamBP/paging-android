@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.linkedlist.pagingstudy.ui.theme.PagingStudyTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,16 +46,17 @@ fun ExampleList(
     modifier: Modifier = Modifier,
     viewModel: MainViewModel,
 ) {
-    val list by viewModel.list.collectAsState()
+//    val list by viewModel.list.collectAsState()
+    val list = viewModel.documentsFlow.collectAsLazyPagingItems()
 
-    LaunchedEffect(Unit) {
-        viewModel.fetchData()
-    }
+//    LaunchedEffect(Unit) {
+//        viewModel.fetchData()
+//    }
 
     LazyColumn {
-        items(list.size) {
+        items(list.itemCount) { item ->
             Box(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
-                Text(list[it].title, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                Text(list[item]!!.title, fontSize = 16.sp, fontWeight = FontWeight.Bold)
             }
         }
     }

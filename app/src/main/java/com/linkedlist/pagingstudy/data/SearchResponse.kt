@@ -1,4 +1,4 @@
-package com.linkedlist.pagingstudy
+package com.linkedlist.pagingstudy.data
 
 data class SearchResponse<T>(
     val meta: Meta,
