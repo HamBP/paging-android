@@ -17,11 +17,16 @@ class RemotePagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Document> {
         val nextPageNumber = params.key ?: 1
-        val response = api.getDocuments()
-        return LoadResult.Page(
-            data = response.documents,
-            prevKey = null,
-            nextKey = nextPageNumber + 1
-        )
+
+        return try {
+            val response = api.getDocuments(query = query, page = nextPageNumber, size = params.loadSize)
+            LoadResult.Page(
+                data = response.documents,
+                prevKey = null,
+                nextKey = nextPageNumber + 1
+            )
+        } catch (e: Exception) {
+            LoadResult.Error(e)
+        }
     }
 }
